@@ -1,2 +1,0 @@
-C:\Users\rotne\code\COP\obj\Debug\net9.0\COP.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\rotne\code\COP\obj\Debug\net9.0\COP.csproj.CoreCompileInputs.cache
