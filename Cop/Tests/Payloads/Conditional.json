@@ -1,0 +1,28 @@
+{
+  "title": "OneDrive SCOOBE Trigger",
+  "operations": [
+    {
+      "id": "xxx",
+      "type": "RequestParameters",
+      "payload": {
+        "cxh-puid": "30232",
+        "cxh-country": "US"
+      }
+    },
+    {
+      "id": "xyz",
+      "type": "Microsoft.GulServicesShared.CommercePartners.DigitalAttach.Cop",
+      "parameters": {
+        "puid": "@<xxx::payload.cxh-puid>"
+      }
+    },
+    {
+      "id": "puid.equal",
+      "type": "Microsoft.GulServicesShared.Cop.Api.Condition.EqCondition",
+      "payload": {
+        "values": [ "@<xxx::payload.cxh-puid>", "@<xyz::parameters.puid>" ],
+        "action": "Puid's are equal"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+C:\Users\rotne\code\COP\Api\bin\Debug\net9.0\Api.deps.json
+C:\Users\rotne\code\COP\Api\bin\Debug\net9.0\Api.dll
+C:\Users\rotne\code\COP\Api\bin\Debug\net9.0\Api.pdb
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\Api.csproj.AssemblyReference.cache
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\Api.csproj.CoreCompileInputs.cache
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\Api.dll
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\refint\Api.dll
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\Api.pdb
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\ref\Api.dll
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\Api.AssemblyInfoInputs.cache
+C:\Users\rotne\code\COP\Api\obj\Debug\net9.0\Api.AssemblyInfo.cs
