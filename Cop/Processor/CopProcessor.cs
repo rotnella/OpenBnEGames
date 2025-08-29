@@ -1,35 +1,54 @@
-﻿using BnEGames.Operation.Cop.Api;
-using BnEGames.Operation.Cop.Api.Condition;
-using Newtonsoft.Json;
+﻿using BnEGames.Cop.Api;
+using BnEGames.Cop.Processor.Json;
+using BnEGames.Cop.Processor.Operation;
 using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 
-namespace BnEGames.Operation.Cop.Processor
+namespace BnEGames.Cop.Processor
 {
     public class CopProcessor
     {
-        public static void Run(JContainer container)
+
+        public IOperationRegistry Registry { get; set; }
+        public JsonRefResolver RefResolver { get; set; }
+
+        public CopProcessor() : this(new OperationRegistry()){}
+
+        public CopProcessor(IOperationRegistry registry) 
         {
-            JsonRefResolver refResolver = new JsonRefResolver();
-            OperationRegistry registry = new OperationRegistry();
-            refResolver.Resolve(container);
-            while (refResolver.HasReadyObject())
+            this.Registry = registry;
+            this.RefResolver = new JsonRefResolver();
+        }
+
+        public void Process(JContainer container)
+        {
+            RefResolver.Resolve(container);
+            while (RefResolver.HasReadyObject())
             {
-                JContainer readyOp = refResolver.TakeReadyObject();
-                BnEGames.Operation.Cop.Api.Operation operation = readyOp.ToObject<BnEGames.Operation.Cop.Api.Operation>();
-                //perform op
-                Dictionary<string, string> dict = new Dictionary<string, string>();
-                dict["cxh-puid"] = "1235";
-                object output = dict;
-                IOperationCompute opCompute = registry.GetOperationCompute(operation);
-                if (opCompute != null)
+                JContainer readyOp = RefResolver.TakeReadyObject();
+                
+                if (readyOp == null)
                 {
-                    output = opCompute.Compute(operation);
+                    throw new Exception("Ready operation is null");
                 }
-                readyOp.Add(new JProperty("result", JValue.FromObject(output)));
-                refResolver.ResolveFor(operation.Id);
+                // Get the type string from the JContainer
+                var typeToken = readyOp["type"];
+                if (typeToken == null)
+                {
+                    throw new Exception("Operation type property missing");
+                }
+                string typeName = typeToken.Value<string>();
+                var opType = Registry.GetOperationType(typeName);
+                if (opType == null)
+                {
+                    throw new Exception($"Unknown operation type: {typeName}");
+                }
+                var operation = (Api.IOperation)readyOp.ToObject(opType);
+                object? output = operation?.Compute();
+                if (output != null)
+                {
+                    readyOp.Add(new JProperty("result", JValue.FromObject(output)));
+                }
+                RefResolver.ResolveFor(operation?.Id);
             }
         }
     }

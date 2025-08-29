@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BnEGames.Operation.Cop.Api
+namespace BnEGames.Cop.Api
 {
     public interface IOperationRegistry
     {
-        public IOperationCompute? GetOperationCompute(Operation operation);
+        public Type? GetOperationType(string typeName);
     }
 }

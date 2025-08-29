@@ -1,28 +1,34 @@
-using BnEGames.Operation.Cop.Processor;
+// Suppress CS8600: Converting null literal or possible null value to non-nullable type
+#pragma warning disable CS8600
+// Suppress CS8602: Dereference of a possibly null reference
+#pragma warning disable CS8602
+// Suppress CS8604: Possible null reference argument
+#pragma warning disable CS8604
+using BnEGames.Cop.Processor;
+using BnEGames.Cop.Processor.Json;
 using Newtonsoft.Json.Linq;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using Xunit;
 
-namespace BnEGames.Operation.COP.Tests
+namespace BnEGames.Cop.Tests
 {
     public class JsonRefResolverTest
     {
+        CopProcessor copProcessor = new CopProcessor();
         [Fact]
         public void TestOperationRunner()
         {
             string json = ReadFile("StringRef.json");
             JContainer container = JObject.Parse(json);
-            CopProcessor.Run(container);
+            copProcessor.Process(container);
         }
 
         [Fact]
         public void TestConditionRunner()
         {
-            string json = ReadFile("Conditional.json");
+            string json = ReadFile("CopPlan.json");
             JContainer container = JObject.Parse(json);
-            CopProcessor.Run(container);
+            copProcessor.Process(container);
         }
 
         [Fact]
@@ -77,7 +83,7 @@ namespace BnEGames.Operation.COP.Tests
                 {
                     Assert.True(false, $"Unable to read file {filename}");
                 }
-                return result;
+                return result ?? "";
             }
         }
     }
