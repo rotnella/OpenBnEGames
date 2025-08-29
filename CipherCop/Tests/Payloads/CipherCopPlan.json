@@ -1,0 +1,12 @@
+{
+  "title": "PirateBooty.Keys",
+  "operations": [
+    {
+      "id": "2",
+      "type": "BnEGames.CipherCop.Processor.Cipher.RuneWheel.RuneWheelCipher",
+      "payload": {
+          "WordToEncrypt": "BnEGames"
+      }
+    }
+  ]
+}

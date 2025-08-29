@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <RootNamespace>BnEGames.CipherCop.Processor</RootNamespace>
+    <Nullable>enable</Nullable>
+  <AssemblyName>BnEGamesCipherCopProcessor</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="BnEGamesCop">
+      <HintPath>..\..\Cop\bin\Debug\net9.0\BnEGamesCop.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

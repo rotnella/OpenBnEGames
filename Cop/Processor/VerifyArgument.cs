@@ -1,6 +1,6 @@
 using System;
 
-namespace BnEGames.Operation.Cop.Processor
+namespace BnEGames.Cop.Processor
 {
     public static class VerifyArgument
     {

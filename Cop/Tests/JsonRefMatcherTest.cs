@@ -1,8 +1,8 @@
-﻿using BnEGames.Operation.Cop.Processor;
+﻿using BnEGames.Cop.Processor.Json;
 using System.Text.RegularExpressions;
 using Xunit;
 
-namespace BnEGames.Operation.Cop.Tests
+namespace BnEGames.Cop.Tests
 {
     public class JsonRefMatcherTest
     {
