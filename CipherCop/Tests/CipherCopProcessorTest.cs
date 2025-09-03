@@ -26,6 +26,8 @@ namespace BnEGames.CipherCop.Tests
             string json = ReadFile("CipherCopPlan.json");
             JContainer container = JObject.Parse(json);
             copProcessor.Process(container);
+            string result = container.ToString();
+            Assert.NotNull(result);
         }
 
         private string RemoveWhitespace(string text)

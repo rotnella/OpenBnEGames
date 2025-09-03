@@ -3,7 +3,7 @@
   "operations": [
     {
       "id": "2",
-      "type": "BnEGames.CipherCop.Processor.Cipher.RuneWheel.RuneWheelCipher",
+      "type": "BnEGames.CipherCop.Processor.Cipher.Rune.RuneWheelCipher",
       "payload": {
           "WordToEncrypt": "BnEGames"
       }

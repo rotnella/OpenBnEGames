@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using BnEGames.CipherCop.Processor.Cipher.RuneWheel;
+using BnEGames.CipherCop.Processor.Cipher.Rune;
 using BnEGames.Cop.Processor.Operation;
 
 namespace BnEGames.CipherCop.Processor.Operation

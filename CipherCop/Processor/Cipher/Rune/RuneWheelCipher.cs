@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿
 using BnEGames.Cop.Api;
 
-namespace BnEGames.CipherCop.Processor.Cipher.RuneWheel
+namespace BnEGames.CipherCop.Processor.Cipher.Rune
 {
     public class RuneWheelCipher : Operation<RuneWheelCipherInput, RuneWheelCipherOutput>
     {
@@ -10,14 +9,10 @@ namespace BnEGames.CipherCop.Processor.Cipher.RuneWheel
         {
             RuneWheelCipherInput input = Payload;
             if (input == null || string.IsNullOrEmpty(input.WordToEncrypt))
-                return new RuneWheelCipherOutput();
+                return null;
 
             string word = (string)input.WordToEncrypt;
-            // split the word into characters
-            char[] chars = word.ToCharArray();
-            // for each character map to the run in the map
-
-            return new RuneWheelCipherOutput();
+            return new RuneWheelCipherOutput(word);
         }
     }
     public class RuneWheelCipherInput
@@ -30,8 +25,15 @@ namespace BnEGames.CipherCop.Processor.Cipher.RuneWheel
     }
     public class RuneWheelCipherOutput
     {
-        public string CypherKey { get; set; }
-        public string CypherValue { get; set; }
-        public string EncryptedWord { get; set; }
+        public RuneWheelCipherOutput(string word)
+        {
+            RuneToAlphabetCipher runeMap = new RuneToAlphabetCipher();
+            CypherKeyRune = runeMap.KeyRune.ToString();
+            CypherKeyLetter = runeMap.KeyLetter.ToString();
+            EncryptedWord = runeMap.EncryptWord(word);
+        }
+        public string CypherKeyRune { get; set; }
+        public string CypherKeyLetter { get; set; }
+        public char[] EncryptedWord { get; set; }
     }
 }
