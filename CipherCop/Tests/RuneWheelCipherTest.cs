@@ -8,13 +8,18 @@ namespace BnEGames.CipherCop.Tests
     public class RuneWheelCipherTest
     {
         [Fact]
-        public void AlphabetToRune_MapsAllLetters()
+        public void AlphabetToRune_Map()
         {
-            foreach (char c in Enumerable.Range('A', 26).Select(i => (char)i))
-            {
-                char rune = RuneMap.AlphabetToRune[c];
-                Console.WriteLine($"{c} -> U+{((int)rune):X4} ({rune})");
-            }
+            RuneToAlphabetCipher runeMap = new RuneToAlphabetCipher('D', 'ᛓ');
+            Assert.Equal('ᛓ', runeMap.Encrypt('D'));
+            Assert.Equal('d', runeMap.Decrypt('ᛓ'));
+            Assert.Equal('ᛒ', runeMap.Encrypt('E'));
+        
+            runeMap = new RuneToAlphabetCipher('a', 'ᛉ');
+            Assert.Equal('ᛉ', runeMap.Encrypt('a'));
+            Assert.Equal('a', runeMap.Decrypt('ᛉ'));
+            Assert.Equal('ᛈ', runeMap.Encrypt('B'));
+            Assert.Equal('ᛎ', runeMap.Encrypt('n'));
         }
 
         // Add more tests for RuneWheelCipher APIs as needed
